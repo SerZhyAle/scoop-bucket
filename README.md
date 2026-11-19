@@ -1,42 +1,34 @@
-# Scoop Bucket Template
+# Scoop bucket of Serhii Zhyhunenko
 
-<!-- Uncomment the following line after replacing placeholders -->
-<!-- [![Tests](https://github.com/<username>/<bucketname>/actions/workflows/ci.yml/badge.svg)](https://github.com/<username>/<bucketname>/actions/workflows/ci.yml) [![Excavator](https://github.com/<username>/<bucketname>/actions/workflows/excavator.yml/badge.svg)](https://github.com/<username>/<bucketname>/actions/workflows/excavator.yml) -->
+[![Tests](https://github.com/SerZhyAle/scoop-bucket/actions/workflows/ci.yml/badge.svg)](https://github.com/SerZhyAle/scoop-bucket/actions/workflows/ci.yml) [![Excavator](https://github.com/SerZhyAle/scoop-bucket/actions/workflows/excavator.yml/badge.svg)](https://github.com/SerZhyAle/scoop-bucket/actions/workflows/excavator.yml)
 
-Template bucket for [Scoop](https://scoop.sh), the Windows command-line installer.
+[Scoop](https://scoop.sh) manifests for the Windows programs of Serhii Zhyhunenko.
 
-## How do I use this template?
+| Program | Install name | What it does |
+| --- | --- | --- |
+| [FileDO](https://serzhyale.github.io/FileDO/) | `filedo` | Tests USB sticks and SD cards for fake capacity, finds duplicate files, compares and copies folders, and wipes free space to make recovery harder. A window and a command line. |
 
-1. Generate your own copy of this repository with the "Use this template"
-   button.
-2. Allow all GitHub Actions:
-   - Navigate to `Settings` - `Actions` - `General` - `Actions permissions`.
-   - Select `Allow all actions and reusable workflows`.
-   - Then `Save`.
-3. Workflow permissions:
-   - Navigate to `Settings` - `Actions` - `General` - `Workflow permissions`.
-   - Ensure `Read repository contents and packages permissions` is selected.
-   - Then `Save`.
-4. Document the bucket in `README.md`.
-5. Replace the placeholder repository string in `bin/auto-pr.ps1`.
-6. Create new manifests by copying `bucket/app-name.json.template` to
-   `bucket/<app-name>.json`.
-7. Commit and push changes.
-8. If you'd like your bucket to be indexed on `https://scoop.sh`, add the
-   topic `scoop-bucket` to your repository.
-
-## How do I install these manifests?
-
-After manifests have been committed and pushed, run the following:
+## Install
 
 ```pwsh
-scoop bucket add <bucketname> https://github.com/<username>/<bucketname>
-scoop install <bucketname>/<manifestname>
+scoop bucket add serzhyale https://github.com/SerZhyAle/scoop-bucket
+scoop install serzhyale/filedo
 ```
 
-## How do I contribute new manifests?
+`filedo_win` opens the FileDO window, and Scoop adds it to the Start menu as FileDO. `filedo` runs the same jobs in a terminal - for example `filedo E: test del` writes test files to the free space of `E:`, reads them back and deletes them.
 
-To make a new manifest contribution, please read the [Contributing
-Guide](https://github.com/ScoopInstaller/.github/blob/main/.github/CONTRIBUTING.md)
-and [App Manifests](https://github.com/ScoopInstaller/Scoop/wiki/App-Manifests)
-wiki page.
+Update with `scoop update filedo`, remove with `scoop uninstall filedo`.
+
+The FileDO build is not code-signed: [what Windows may show, and why](https://serzhyale.github.io/FileDO/guides/install-trust.html).
+
+## How the manifests stay current
+
+The Excavator workflow runs every four hours: it reads each program's latest GitHub release and writes the new version, download address and SHA256 into the manifest. The SHA256 is read from the `.sha256` file published beside each release download.
+
+## Contact
+
+Serhii Zhyhunenko, sza@ukr.net. A problem with a program itself goes to that program's tracker - for FileDO, [FileDO issues](https://github.com/SerZhyAle/FileDO/issues). A problem with a manifest goes to the issues of this repository.
+
+## License
+
+The manifests are in the public domain ([The Unlicense](LICENSE)). Each program keeps its own license; FileDO is MIT.

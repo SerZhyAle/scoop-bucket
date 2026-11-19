@@ -17,7 +17,7 @@ body:
   attributes:
     label: Package Name
     description: Name of package (install name) which has bug(s)
-    placeholder: e.g. 7zip (not '7-Zip')
+    placeholder: e.g. filedo (not 'FileDO')
   validations:
     required: true
 - type: textarea
