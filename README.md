@@ -1,6 +1,6 @@
 # Scoop bucket of Serhii Zhyhunenko
 
-[![Tests](https://github.com/SerZhyAle/scoop-bucket/actions/workflows/ci.yml/badge.svg)](https://github.com/SerZhyAle/scoop-bucket/actions/workflows/ci.yml) [![Excavator](https://github.com/SerZhyAle/scoop-bucket/actions/workflows/excavator.yml/badge.svg)](https://github.com/SerZhyAle/scoop-bucket/actions/workflows/excavator.yml)
+[![Tests](https://github.com/SerZhyAle/scoop-bucket/actions/workflows/ci.yml/badge.svg)](https://github.com/SerZhyAle/scoop-bucket/actions/workflows/ci.yml)
 
 [Scoop](https://scoop.sh) manifests for the Windows programs of Serhii Zhyhunenko.
 
@@ -23,7 +23,7 @@ The FileDO build is not code-signed: [what Windows may show, and why](https://se
 
 ## How the manifests stay current
 
-The Excavator workflow runs every four hours: it reads each program's latest GitHub release and writes the new version, download address and SHA256 into the manifest. The SHA256 is read from the `.sha256` file published beside each release download.
+Each program's own release script updates its manifest as part of every release: it writes the new version, download address and SHA256 into the manifest, and the SHA256 is read twice and must agree - from the `.sha256` file published beside the download and from GitHub's own digest of the download. Every commit here is then checked by Scoop's own manifest tests.
 
 ## Contact
 
